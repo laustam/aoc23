@@ -1,6 +1,7 @@
 file = open("input/day1", "r")
 
 def isNumber(input: str) -> int:
+
     if input.startswith("one"):
         return 1
     elif input.startswith("two"):
