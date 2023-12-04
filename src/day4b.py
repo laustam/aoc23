@@ -20,5 +20,3 @@ while len(cards_to_process) > 0:
     cards_to_process.extend(list(range(card_num + 1, card_num + matching+1)))
 
 print(total_scratchcards)
-
-# too low 1032
