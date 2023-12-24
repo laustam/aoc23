@@ -1,16 +1,17 @@
 file = open("input/day1", "r")
 
-calibration_values: list[int] = []
+calibration_sum = 0
 
 for line in file:
-    numbers: list[int] = []
     for char in line:
-        if not char.isnumeric():
-            continue
-        numbers.append(int(char))
+        if char.isnumeric():
+            first_digit = int(char)
+            break
+    for char in line[::-1]:
+        if char.isnumeric():
+            last_digit = int(char)
+            break
     
-    calibration_values.append(numbers[0] * 10 + numbers[-1])
+    calibration_sum += first_digit * 10 + last_digit
 
-print(sum(calibration_values))
-
-
+print(calibration_sum)

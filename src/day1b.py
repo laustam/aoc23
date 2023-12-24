@@ -1,8 +1,9 @@
 file = open("input/day1", "r")
 
 def isNumber(input: str) -> int:
-
-    if input.startswith("one"):
+    if input[0].isnumeric():
+        return int(input[0])
+    elif input.startswith("one"):
         return 1
     elif input.startswith("two"):
         return 2
@@ -23,20 +24,21 @@ def isNumber(input: str) -> int:
     else:
         return -1
 
-calibration_values: list[int] = []
+calibration_sum = 0
 
 for line in file:
-    numbers: list[int] = []
-    for i in range(len(line)):
-        char: chr = line[i]
-        if not char.isnumeric():
-            maybe_num: int = isNumber(line[i:])
-            if maybe_num != -1:
-                numbers.append(maybe_num)
-            continue
-        numbers.append(int(char))
-    calibration_values.append(numbers[0] * 10 + numbers[-1])
+    for i in range(len(line)):                    
+        maybe_num = isNumber(line[i:])
+        if maybe_num != -1:
+            first_digit = maybe_num
+            break
+    
+    for j in range(len(line)-1,-1,-1):        
+        maybe_num = isNumber(line[j:])
+        if maybe_num != -1:
+            last_digit = maybe_num
+            break
 
-print(sum(calibration_values))
+    calibration_sum += first_digit * 10 + last_digit
 
-
+print(calibration_sum)
